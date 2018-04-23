@@ -2,17 +2,25 @@ package model;
 
 public class NewsChoose {
     private String _title;
-    private int   _image;
-    private  boolean _star;
+    private  byte[]  _image;
+    private  int _star;
     public String get_title() {
         return _title;
     }
 
-    public boolean is_star() {
+    public byte[] get_image() {
+        return _image;
+    }
+
+    public void set_image(byte[] _image) {
+        this._image = _image;
+    }
+
+    public int get_star() {
         return _star;
     }
 
-    public void set_star(boolean _star) {
+    public void set_star(int _star) {
         this._star = _star;
     }
 
@@ -21,24 +29,14 @@ public class NewsChoose {
     }
 
 
-    public int get_image() {
-        return _image;
-    }
-
-    public void set_image(int _image) {
-        this._image = _image;
-    }
 
     public NewsChoose() {
 
     }
 
-    public NewsChoose(String _title, boolean _star, int _image) {
-
+    public NewsChoose(String _title, byte[] _image, int _star) {
         this._title = _title;
-        this._star = _star;
         this._image = _image;
+        this._star = _star;
     }
-
-
 }

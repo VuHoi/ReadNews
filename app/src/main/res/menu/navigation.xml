@@ -3,19 +3,45 @@
 
     <group android:checkableBehavior="single">
         <item
-        android:id="@+id/nav_first_fragment"
-        android:icon="@drawable/uncheck"
-        android:title="First" />
+        android:id="@+id/mnkhoahoc"
+        android:icon="@drawable/logo"
+        android:title="Khoa học" />
         <item
-            android:id="@+id/nav_second_fragment"
+            android:id="@+id/mngiaitri"
             android:icon="@drawable/check"
-            android:title="Second" />
+            android:title="Giải trí" />
         <item
-
-            android:id="@+id/nav_third_fragment"
+            android:id="@+id/mnthoisu"
             android:icon="@drawable/check"
-            android:title="Third" />
-
+            android:title="Thời sự" />
+        <item
+            android:id="@+id/mnthethao"
+            android:icon="@drawable/check"
+            android:title="Thể thao" />
+        <item
+            android:id="@+id/mnphapluat"
+            android:icon="@drawable/check"
+            android:title="Pháp luật" />
+        <item
+            android:id="@+id/mnstartup"
+            android:icon="@drawable/check"
+            android:title="Startup" />
+        <item
+            android:id="@+id/mnsuckhoe"
+            android:icon="@drawable/check"
+            android:title="Sức khỏe" />
+        <item
+            android:id="@+id/mngiadinh"
+            android:icon="@drawable/check"
+            android:title="Gia đình" />
+        <item
+            android:id="@+id/mnxe"
+            android:icon="@drawable/check"
+            android:title="Xe" />
+        <item
+            android:id="@+id/mngiaoduc"
+            android:icon="@drawable/check"
+            android:title="Giáo dục" />
 
     </group>
     <item android:title="Liên hệ">

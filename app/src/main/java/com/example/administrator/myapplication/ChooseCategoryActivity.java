@@ -2,6 +2,8 @@ package com.example.administrator.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -9,15 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import Adapter.MyDatabaseAdapter;
 import Adapter.TitleNewsAdapter;
 import model.NewsChoose;
 
@@ -25,6 +25,8 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     ListView lsvtitle;
     TitleNewsAdapter adapter;
     ArrayList<NewsChoose> NewsChooses;
+    MyDatabaseAdapter myDatabase;
+    SQLiteDatabase database;
     Toolbar toolbar;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -34,25 +36,38 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
         addControl();
         addEvent();
+        test();
         AddStatus();
 
     }
 
+    private void test() {
+
+        myDatabase= new MyDatabaseAdapter(ChooseCategoryActivity.this);
+        myDatabase.Khoitai();
+        database=myDatabase.getMyDatabase();
+
+        Cursor cursor = database.rawQuery("select * from Categories", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast())
+        {
+            String name=cursor.getString(1);
+            int restype=cursor.getInt(3);
+            byte[] image = cursor.getBlob(2);
+            NewsChooses.add(new NewsChoose(name,image,restype));
+
+            adapter.notifyDataSetChanged();
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+
+    }
     private void addEvent() {
-        NewsChooses.add(new NewsChoose("Báo thanh niên",true,R.drawable.logo));
-        NewsChooses.add(new NewsChoose("Báo thanh niên",true,R.drawable.logo));
-        NewsChooses.add(new NewsChoose("Báo thanh niên",true,R.drawable.logo));
-        NewsChooses.add(new NewsChoose("Báo thanh niên",true,R.drawable.logo));
-        NewsChooses.add(new NewsChoose("Báo thanh niên",true,R.drawable.logo));
-        adapter.notifyDataSetChanged();
 
-        lsvtitle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ChooseCategoryActivity.this, i+" ", Toast.LENGTH_SHORT).show();
 
-            }
-        });
+
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -61,8 +76,8 @@ public class ChooseCategoryActivity extends AppCompatActivity {
          toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
       setTitle("Chọn tên báo bạn quan tâm");
-//      toolbar.setTitleTextColor(R.color.white);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+      toolbar.setTitleTextColor(R.color.white);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         //Hiện nút back
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NewsChooses=new ArrayList<>();
@@ -83,6 +98,10 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.mndone:
+
+//                ContentValues values=new ContentValues();
+//                values.put("checkChoice",2);
+//                database.updateWithOnConflict("StatusChoose",values,"Id=1",null,SQLiteDatabase.CONFLICT_FAIL);
                 Intent intent =new Intent(ChooseCategoryActivity.this,News_Activity.class);
                 startActivity(intent);
                 break;

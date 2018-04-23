@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,26 +34,17 @@ public class NewsAdapter extends ArrayAdapter<News> {
         LayoutInflater inflater = this.context.getLayoutInflater();
         View row = inflater.inflate(this.resource, null);
 
-        TextView title=row.findViewById(R.id.txttitle);
-//       TextView description =row.findViewById((R.id.txtdescription))
-        ImageView imglogo=row.findViewById(R.id.imglogo);
+        TextView title=row.findViewById(R.id.txtnewtitle);
+       TextView description =row.findViewById((R.id.txtdescription));
+        ImageView imglogo=row.findViewById(R.id.imgnews);
 
 
         final News news = this.objects.get(position);
 
-//        title.setText(news.get_title().toString());
-//        imglogo.setImageResource(newsChoose.get_image());
-//        chkstar.setChecked(newsChoose.is_star());
-//        rltcontainer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newsChoose.set_star(!newsChoose.is_star());
-//                chkstar.setChecked(newsChoose.is_star());
-//                Animation animation1 = new AlphaAnimation(0.3f, 1.0f);
-//                animation1.setDuration(1000);
-//                v.startAnimation(animation1);
-//            }
-//        });
+        title.setText(news.getTitle().toString());
+        description.setText(news.getDescription());
+        Picasso.get().load(news.getImage()).resize(95,95).into(imglogo);
+
 
         return row;
     }

@@ -2,8 +2,26 @@ package model;
 
 public class News {
     String title, description;
-    int image;
+    String image;
+    String link;
     boolean status;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public News(String title, String description, String image, String link, boolean status) {
+
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.link = link;
+        this.status = status;
+    }
 
     public News() {
     }
@@ -24,11 +42,11 @@ public class News {
         this.description = description;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -40,11 +58,5 @@ public class News {
         this.status = status;
     }
 
-    public News(String title, String description, int image, boolean status) {
 
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.status = status;
-    }
 }
