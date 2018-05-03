@@ -36,7 +36,7 @@ public class ReadMultiData extends AsyncTask<Object, Integer,String> {
 
     @Override
     protected void onPostExecute(String s) {
-
+        try{
 
     XMLDOMParser parser = new XMLDOMParser();
     Document document = parser.getDocument(s);
@@ -62,15 +62,20 @@ public class ReadMultiData extends AsyncTask<Object, Integer,String> {
 
         }
         Element element = (Element) nodeList.item(i);
-        news.setTitle(parser.getValue(element, "title"));
-        news.setLink(parser.getValue(element, "link"));
-        news.setDescription((cData.split("</a></br>"))[1]);
+        try{ news.setTitle(parser.getValue(element,"title"));}catch(Exception e){}
+        try{ news.setTitle(element.getElementsByTagName("title").item(0).getTextContent());}catch (Exception e){}
+        try{news.setLink(parser.getValue(element,"link"));}catch (Exception e){}
+        try{ news.setLink(element.getElementsByTagName("link").item(0).getTextContent());}catch (Exception e){}
+        try {
+            news.setDescription((cData.split("/></a>"))[1]);
+        }catch (Exception e){}
+        try{            news.setDescription( (cData.split("</a></br>"))[1]);}catch (Exception e){}
         listNews.add(news);
 //        if (newsAdapter != null) newsAdapter.notifyDataSetChanged();
 
     }
 
-
+}catch(Exception e ){}
         super.onPostExecute(s);
 
 

@@ -20,6 +20,7 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
     NewsAdapter adapter;
     ArrayList<News> news;
     ListView lsvnews;
+    String title;
     public OtherContentFragment(){}
     @Nullable
     @Override
@@ -27,6 +28,8 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_other_content, container, false);
         Bundle bundle=getArguments();
         String Url= bundle.getString("url");
+        title=bundle.getString("title");
+
         news=new ArrayList<>();
 
         lsvnews=view.findViewById(R.id.lsvnews);
@@ -47,7 +50,26 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
 
             }
         });
-        readData(Url);
+
+        if(title.equals("vnExpress")) {
+            readData(Url);
+        }
+        else if(title.equals("Sơn Hà")){
+            readDataDanTri(Url);
+        }
+        else if(title.equals("Dân trí")){
+            readDataDanTri(Url);
+        }
+        else if(title.equals("Kiến thức")){
+            readDataDanTri(Url);
+        }
+        else if(title.equals("vtc")){
+            readDataDanTri(Url);
+        }
+        else if(title.equals("Thanh niên")){
+            readDataDanTri(Url);
+        }
+
         return view;
     }
 
@@ -61,6 +83,19 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
                 dataTransfer[1]=adapter;
                 dataTransfer[2]=news;
                 new ReadData().execute(dataTransfer);
+            }
+        });
+    }
+    private void readDataDanTri(final String url) {
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Object dataTransfer[] = new Object[3];
+                dataTransfer[0]=url;
+                dataTransfer[1]=adapter;
+                dataTransfer[2]=news;
+                new ReadDataDanTri().execute(dataTransfer);
             }
         });
     }

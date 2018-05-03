@@ -1,8 +1,6 @@
 package com.example.administrator.myapplication;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -13,8 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import Adapter.MyDatabaseAdapter;
-
 public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -22,9 +18,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Thông báo sẽ tự động bị hủy khi người dùng click vào Panel
+
+
+
         addControl();
         AddStatus();
+
+
     }
+
+
+
+
 
     private void   addControl(){
 
@@ -32,27 +40,23 @@ public class MainActivity extends AppCompatActivity {
         Animation animalpha= AnimationUtils.loadAnimation(this,R.anim.anim_logo);
         imageView.startAnimation(animalpha);
         setTitle("Đọc báo");
-        MyDatabaseAdapter myDatabase;
-         SQLiteDatabase database;
-        myDatabase= new MyDatabaseAdapter(MainActivity.this);
-        myDatabase.Khoitai();
-        database=myDatabase.getMyDatabase();
-        final Cursor cursor = database.rawQuery("select * from StatusChoose", null);
-        cursor.moveToFirst();
-//        getSupportActionBar().hide();
+
+       
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        if(cursor.getInt(1)==1) {
-                            Intent intent = new Intent(MainActivity.this, ChooseCategoryActivity.class);
-                            startActivity(intent);
-                        }
-                        else  {
-                            Intent intent = new Intent(MainActivity.this, News_Activity.class);
-                            startActivity(intent);
-                        }
+
+
+                        Intent intent = new Intent(MainActivity.this, NameNews.class);
+                        startActivity(intent);
+
                     }
                 }, 3000);
+
+        Intent  mServiceIntent = new Intent(MainActivity.this, RSSPullService.class);
+//        mServiceIntent.setData(Uri.parse("https://vnexpress.net/tin-tuc/thoi-su/de-xuat-mo-hinh-bi-thu-kiem-chu-tich-dac-khu-kinh-te-3740710.html"));
+        startService(mServiceIntent);
+
     }
 
 
