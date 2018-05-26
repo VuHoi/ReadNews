@@ -1,16 +1,23 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.administrator.readnews.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +26,8 @@ import Adapter.MyDatabaseAdapter;
 import Adapter.NewsAdapter;
 import model.News;
 
+import static com.example.administrator.readnews.R.layout.footer_view;
+
 public class HomeFragment extends android.support.v4.app.Fragment{
     MyDatabaseAdapter myDatabase;
     SQLiteDatabase database;
@@ -26,8 +35,11 @@ public class HomeFragment extends android.support.v4.app.Fragment{
 NewsAdapter adapter;
 ListView lsvallnews;
     ArrayList<String> urls;
+    View footer_view;
+     boolean isloading=false;
     public HomeFragment(){}
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +54,8 @@ ListView lsvallnews;
         myDatabase.Khoitai();
         database=myDatabase.getMyDatabase();
         String title=getArguments().getString("title");
+        LayoutInflater layoutInflater= (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        footer_view= layoutInflater.inflate(R.layout.footer_view,null);
         if(title.equals("vnExpress")) {
             Cursor cursor = database.rawQuery("select * from Categories", null);
             cursor.moveToFirst();
@@ -128,21 +142,22 @@ ListView lsvallnews;
 
 //        url.add("https://vnexpress.net/rss/khoa-hoc.rss");
 
-       for(String url:urls)
-       {
-           readData( url);
+
+        readData(urls.get(0));
            new android.os.Handler().postDelayed(
                    new Runnable() {
                        public void run() {
                            try {
+
                                Collections.shuffle(content);
                                AllContents.addAll(content);
                                adapter.notifyDataSetChanged();
+
                            }catch (Exception e ){}
                        }
                    }, 1000);
+urls.remove(0);
 
-       }
 
         final Fragment fragment =new ContentNewFragment();
 
@@ -157,6 +172,36 @@ ListView lsvallnews;
                 fragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.flContent, fragment).commit();
 
+            }
+        });
+
+        lsvallnews.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+             if(view.getLastVisiblePosition()==totalItemCount-1)
+             {
+              try {
+                  readData(urls.get(0));
+                  new android.os.Handler().postDelayed(
+                          new Runnable() {
+                              public void run() {
+                                  try {
+                                      Collections.shuffle(content);
+                                      AllContents.addAll(content);
+                                      adapter.notifyDataSetChanged();
+                                  } catch (Exception e) {
+                                  }
+                              }
+                          }, 100);
+                  urls.remove(0);
+              }catch (Exception e){}
+
+             }
             }
         });
         return view;

@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
+
+import com.example.administrator.readnews.R;
 
 import java.util.ArrayList;
 

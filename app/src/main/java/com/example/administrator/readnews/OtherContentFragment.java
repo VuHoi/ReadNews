@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.example.administrator.readnews.R;
 
 import java.util.ArrayList;
 

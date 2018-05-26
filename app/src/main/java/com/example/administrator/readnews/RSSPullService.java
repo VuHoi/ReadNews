@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +11,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.administrator.readnews.R;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,9 +55,10 @@ ArrayList <String> urls;
                 new NotificationCompat.Builder(getApplicationContext(), "notify_001");
         Intent ii = new Intent(getApplicationContext(), Notification.class);
         ii.putExtra("url",url);
-
+        Intent backIntent = new Intent(this, NameNews.class);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ii.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, ii, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,  new Intent[] {backIntent, ii}, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
 
@@ -116,23 +120,23 @@ ArrayList <String> urls;
     public int onStartCommand(Intent intent, int flags, int startId) {
 //        final String  url = intent.getDataString();
 
-for (int i=0;i<100;i++)
-{
-    Random random=new Random();
-    final int index=random.nextInt(5);
-    readDataDanTri(urls.get(index));
+for (int i=1;i<100;i++) {
+    Random random = new Random();
+    final int index = random.nextInt(5);
+    try {
 
 
-    final int finalI = i;
-    new android.os.Handler().postDelayed(
+
+        final int finalI = i;
+        new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-
-createNotification(news.getLink(),news.getTitle(),news.getDescription(), finalI);
-
+                        readDataDanTri(urls.get(index));
+                     if(news.getTitle()!="")   createNotification(news.getLink(), news.getTitle(), news.getDescription(), finalI);
 
                     }
-                }, 3000);
+                }, 1000*30 * finalI);
+    }catch(Exception e) {}
 }
         return super.onStartCommand(intent, flags, startId);
     }

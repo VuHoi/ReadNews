@@ -1,9 +1,11 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.administrator.readnews.R;
 
 public class Notification extends AppCompatActivity {
     WebView wvContent;

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.administrator.myapplication.R;
+import com.example.administrator.readnews.R;
 
 import java.util.List;
 

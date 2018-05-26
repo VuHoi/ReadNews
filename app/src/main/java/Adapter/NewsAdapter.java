@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.myapplication.R;
+import com.example.administrator.readnews.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

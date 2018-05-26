@@ -1,15 +1,18 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.administrator.readnews.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // Thông báo sẽ tự động bị hủy khi người dùng click vào Panel
+                // Thông báo sẽ tự động bị hủy khi người dùng click vào Panel
 
 
 

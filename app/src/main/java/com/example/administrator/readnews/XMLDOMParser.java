@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.util.Log;
 

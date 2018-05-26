@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication;
+package com.example.administrator.readnews;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.example.administrator.readnews.R;
 
 public class News_Activity extends AppCompatActivity {
     private DrawerLayout mDrawer;
@@ -63,6 +65,7 @@ private TextView txtheader;
 //        menu.add(0, 0, 0, "Option1").setShortcut('3', 'c');
 //        menu.add(0, 1, 0, "Option2").setShortcut('3', 'c');
 //        menu.add(0, 2, 0, "Option3").setShortcut('4', 's');
+
         if(title.equals("vnExpress")){
             menuNav.setGroupVisible(R.id.vnExpress,true);
             txtheader.setText("vnExpress");

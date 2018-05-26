@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.administrator.myapplication"
-        minSdkVersion 15
-        targetSdkVersion 27
+        applicationId "com.example.administrator.readnews"
+        minSdkVersion 14
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +17,8 @@ android {
         }
     }
     useLibrary 'org.apache.http.legacy'
+    productFlavors {
+    }
 }
 
 dependencies {
