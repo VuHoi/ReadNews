@@ -139,6 +139,33 @@ ListView lsvallnews;
             urls.add("http://vtc.vn/gioi-tre.rss");
 
         }
+        else if(title.equals("tienphong"))
+        {
+            urls.add("https://www.tienphong.vn/rss/xa-hoi-tin-tuc-104.rss");
+
+            urls.add("https://www.tienphong.vn/rss/xa-hoi-tra-nong-tra-da-114.rss");
+            urls.add("https://www.tienphong.vn/rss/xa-hoi-chuyen-hom-nay-18.rss");
+            urls.add("https://www.tienphong.vn/rss/xa-hoi-phong-su-13.rss");
+            urls.add("https://www.tienphong.vn/rss/kinh-te-thi-truong-24.rss");
+            urls.add("https://www.tienphong.vn/rss/kinh-te-doanh-nghiep-22.rss");
+            urls.add("https://www.tienphong.vn/rss/kinh-te-doanh-nhan-165.rss");
+            urls.add("https://www.tienphong.vn/rss/kinh-te-chung-khoan-105.rss");
+            urls.add("https://www.tienphong.vn/rss/du-lich-220.rss");
+
+        }
+        else if(title.equals("vietbao"))
+        {
+            urls.add("http://vietbao.vn/rss2/tinmoi.rss");
+            urls.add("http://vietbao.vn/live/An-ninh-Phap-luat/rss.xml");
+            urls.add("http://vietbao.vn/live/Blog/rss.xml");
+            urls.add("http://vietbao.vn/live/Bong-da/rss.xml");
+            urls.add("http://vietbao.vn/live/Chiem-tinh/rss.xml");
+            urls.add("http://vietbao.vn/live/Cong-nghe/rss.xml");
+            urls.add("http://vietbao.vn/live/Du-lich/rss.xml");
+            urls.add("http://vietbao.vn/live/Doi-song-Gia-dinh/rss.xml");
+            urls.add("http://vietbao.vn/live/Game/rss.xml");
+
+        }
 
 //        url.add("https://vnexpress.net/rss/khoa-hoc.rss");
 
@@ -211,17 +238,19 @@ urls.remove(0);
 
 
     private void readData(final String url) {
+        try {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Object dataTransfer[] = new Object[2];
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Object dataTransfer[] = new Object[2];
-
-                dataTransfer[0]=content;
-                dataTransfer[1]=url;
-                new ReadMultiData().execute(dataTransfer);
-            }
-        });
+                    dataTransfer[0] = content;
+                    dataTransfer[1] = url;
+                    new ReadMultiData().execute(dataTransfer);
+                }
+            });
+        } catch (Exception exception) {
+        }
+        ;
     }
-
 }

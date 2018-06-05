@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.administrator.readnews.NameNews">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +26,8 @@ android:id="@+id/btnvnexpress"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="vnExpress"
-            android:background="@color/colorAccent"
+
+            android:background="@drawable/vne"
             style="@style/PrimaryButton"/>
         <Button
             android:id="@+id/btndantri"
@@ -32,8 +38,7 @@ android:id="@+id/btnvnexpress"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Dân Trí"
-            android:background="@color/colorAccent"
+            android:background="@drawable/dantri"
             style="@style/PrimaryButton"/>
     </LinearLayout>
     <LinearLayout
@@ -51,8 +56,7 @@ android:id="@+id/btnvnexpress"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Thanh Niên"
-            android:background="@color/colorAccent"
+            android:background="@drawable/thanhnien"
             style="@style/PrimaryButton"/>
         <Button
             android:id="@+id/btnsonha"
@@ -63,17 +67,45 @@ android:id="@+id/btnvnexpress"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Sơn Hà"
-            android:background="@color/colorAccent"
+            android:background="@drawable/sonha"
             style="@style/PrimaryButton"/>
     </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnvietnamnet"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/kienthuc"
+        style="@style/PrimaryButton"/>
+    <Button
+        android:id="@+id/btnvneconomy"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/vtc"
+        style="@style/PrimaryButton"/>
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btnvietnamnet"
+            android:id="@+id/btntienphong"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -82,11 +114,10 @@ android:id="@+id/btnvnexpress"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Kiến thức"
-            android:background="@color/colorAccent"
+            android:background="@drawable/tienphong"
             style="@style/PrimaryButton"/>
         <Button
-            android:id="@+id/btnvneconomy"
+            android:id="@+id/btnvietbao"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -94,8 +125,10 @@ android:id="@+id/btnvnexpress"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="VTC"
-            android:background="@color/colorAccent"
+            android:background="@drawable/vietbao"
             style="@style/PrimaryButton"/>
     </LinearLayout>
+
 </LinearLayout>
+
+</ScrollView>

@@ -1,6 +1,7 @@
 package com.example.administrator.readnews;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -40,7 +41,7 @@ public class ReadData extends AsyncTask<Object, Integer,String> {
     @Override
     protected void onPostExecute(String s) {
 
-
+        Log.d("test", s+"test");
         XMLDOMParser parser =new XMLDOMParser();
         Document document =parser.getDocument(s);
 

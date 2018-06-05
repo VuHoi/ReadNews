@@ -43,7 +43,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         title.setText(news.getTitle().toString());
         description.setText(news.getDescription());
-        Picasso.get().load(news.getImage()).resize(95,95).into(imglogo);
+        Picasso.get().load(news.getImage()).placeholder(R.drawable.logo).resize(95,95).into(imglogo);
 
 
         return row;

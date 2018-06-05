@@ -302,14 +302,149 @@
             android:icon="@drawable/giaoduc"
             android:title="Thể thao" />
     </group>
-    <item android:title="Liên hệ">
-        <menu>
-            <item
-                android:id="@+id/nav_about_us"
-                android:title="Vũ Khắc Hợi" />
-            <item
-                android:id="@+id/nav_privacy_policy"
-                android:title="Hợi đại ca" />
-        </menu>
-    </item>
+    <group android:id="@+id/tienphong" android:title="Tiền Phong" android:visible="false" android:checkableBehavior="single">
+    <item
+        android:id="@+id/tptintuc"
+        android:icon="@drawable/logo"
+        android:title="Tin tức" />
+    <item
+        android:id="@+id/tptrada"
+        android:icon="@drawable/giaoduc"
+        android:title="Trà chanh - Trà đá" />
+    <item
+        android:id="@+id/tpchuyenhomnay"
+        android:icon="@drawable/khoahoc"
+        android:title="Chuyện hôm nay" />
+    <item
+        android:id="@+id/tpphongsu"
+        android:icon="@drawable/thethao"
+        android:title="Phóng sự" />
+    <item
+        android:id="@+id/tpthitruong"
+        android:icon="@drawable/giaoduc"
+        android:title="Thị trường" />
+    <item
+        android:id="@+id/tpdoanhnghiep"
+        android:icon="@drawable/thethao"
+        android:title="Địa ốc" />
+    <item
+        android:id="@+id/tpdoanhnhan"
+        android:icon="@drawable/phapluat"
+        android:title="Doanh nhân" />
+    <item
+        android:id="@+id/tpchungkhoan"
+        android:icon="@drawable/khoahoc"
+        android:title="Chứng khoán" />
+    <item
+        android:id="@+id/tpdulich"
+        android:icon="@drawable/giaoduc"
+        android:title="Du lịch" />
+    <item
+        android:id="@+id/tpnhipsong"
+        android:icon="@drawable/giaoduc"
+        android:title="Nhịp sống" />
+    <item
+        android:id="@+id/tpvieclam"
+        android:icon="@drawable/giaoduc"
+        android:title="Việc làm" />
+    <item
+        android:id="@+id/tptainangtre"
+        android:icon="@drawable/giaoduc"
+        android:title="Tài năng trẻ" />
+    <item
+        android:id="@+id/tpbongda"
+        android:icon="@drawable/giaoduc"
+        android:title="Bóng đá" />
+    <item
+        android:id="@+id/tpsao"
+        android:icon="@drawable/giaoduc"
+        android:title="Sao" />
+    <item
+        android:id="@+id/tpcongnghe"
+        android:icon="@drawable/giaoduc"
+        android:title="Công nghệ" />
+    <item
+        android:id="@+id/tphocduong"
+        android:icon="@drawable/giaoduc"
+        android:title="Học đường" />
+    <item
+        android:id="@+id/tpthoitrang"
+        android:icon="@drawable/giaoduc"
+        android:title="Thời trang" />
+    </group>
+
+    <group android:id="@+id/vietbao" android:title="Việt Báo" android:visible="false" android:checkableBehavior="single">
+        <item
+            android:id="@+id/vbanninh"
+            android:icon="@drawable/logo"
+            android:title="An ninh- Pháp luật" />
+        <item
+            android:id="@+id/vbblog"
+            android:icon="@drawable/giaoduc"
+            android:title="Blog" />
+        <item
+            android:id="@+id/vbbongda"
+            android:icon="@drawable/khoahoc"
+            android:title="Bóng đá" />
+        <item
+            android:id="@+id/vbchiemtinh"
+            android:icon="@drawable/thethao"
+            android:title="Chiêm tình" />
+        <item
+            android:id="@+id/vbcongnghe"
+            android:icon="@drawable/giaoduc"
+            android:title="Công nghệ" />
+        <item
+            android:id="@+id/vbdulich"
+            android:icon="@drawable/giaoduc"
+            android:title="Du lịch" />
+        <item
+            android:id="@+id/vbdoisong"
+            android:icon="@drawable/thethao"
+            android:title="Đời sông" />
+        <item
+            android:id="@+id/vbgame"
+            android:icon="@drawable/phapluat"
+            android:title="Game" />
+        <item
+            android:id="@+id/vbgiaoduc"
+            android:icon="@drawable/khoahoc"
+            android:title="Giáo dục" />
+        <item
+            android:id="@+id/vbkhampha"
+            android:icon="@drawable/giaoduc"
+            android:title="Khám phá" />
+        <item
+            android:id="@+id/vbkhoahoc"
+            android:icon="@drawable/giaoduc"
+            android:title="Khoa học" />
+        <item
+            android:id="@+id/vbkinhte"
+            android:icon="@drawable/giaoduc"
+            android:title="Kinh tế" />
+        <item
+            android:id="@+id/vbmedia"
+            android:icon="@drawable/giaoduc"
+            android:title="Media" />
+        <item
+            android:id="@+id/vbbonphuong"
+            android:icon="@drawable/giaoduc"
+            android:title="Người việt bốn phương" />
+        <item
+            android:id="@+id/vbnhadat"
+            android:icon="@drawable/giaoduc"
+            android:title="Nhà đất" />
+        <item
+            android:id="@+id/vboto"
+            android:icon="@drawable/giaoduc"
+            android:title="Ô tô - Xe Máy" />
+        <item
+            android:id="@+id/vbphongsu"
+            android:icon="@drawable/giaoduc"
+            android:title="Phóng sự" />
+        <item
+            android:id="@+id/vbsuckhoe"
+            android:icon="@drawable/giaoduc"
+            android:title="Sức khỏe" />
+    </group>
 </menu>

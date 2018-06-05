@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.QuickContactBadge;
 
 import com.example.administrator.readnews.R;
 
 public class NameNews extends AppCompatActivity {
 
 
-    Button btnvnexpress,btnsonha,btnvneconomy,btnvietnamnet,btndantri,btnthanhnien;
+    Button btnvnexpress,btnsonha,btnvneconomy,btnvietnamnet,btndantri,btnthanhnien,btntienphong,btnvietbao;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,22 @@ public class NameNews extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+btntienphong.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent(NameNews.this,News_Activity.class);
+        intent.putExtra("url","tienphong");
+        startActivity(intent);
+    }
+});
+        btnvietbao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(NameNews.this,News_Activity.class);
+                intent.putExtra("url","vietbao");
+                startActivity(intent);
+            }
+        });
     }
 
     private void addControl() {
@@ -86,6 +102,8 @@ public class NameNews extends AppCompatActivity {
         btnthanhnien=findViewById(R.id.btnthanhnien);
         btnvneconomy=findViewById(R.id.btnvneconomy);
         btnvietnamnet=findViewById(R.id.btnvietnamnet);
+        btntienphong=findViewById((R.id.btntienphong));
+        btnvietbao=findViewById(R.id.btnvietbao);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

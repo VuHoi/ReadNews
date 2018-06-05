@@ -54,7 +54,7 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
         });
 
         if(title.equals("vnExpress")) {
-            readData(Url);
+            readDataDanTri(Url);
         }
         else if(title.equals("Sơn Hà")){
             readDataDanTri(Url);

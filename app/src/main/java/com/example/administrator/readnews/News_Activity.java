@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.readnews.R;
@@ -25,6 +26,7 @@ public class News_Activity extends AppCompatActivity {
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
     private  Bundle args;
+    private ImageView imgheader;
 private TextView txtheader;
     String title;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -44,6 +46,8 @@ private TextView txtheader;
 
         nvDrawer =  findViewById(R.id.nvView);
         txtheader=nvDrawer.getHeaderView(0).findViewById(R.id.txtheader);
+        imgheader=nvDrawer.getHeaderView(0).findViewById(R.id.imgheader);
+        imgheader.setImageResource(R.drawable.vne);
         setTitle("Tin mới");
         // Setup drawer view
         setupDrawerContent(nvDrawer);
@@ -69,24 +73,40 @@ private TextView txtheader;
         if(title.equals("vnExpress")){
             menuNav.setGroupVisible(R.id.vnExpress,true);
             txtheader.setText("vnExpress");
+            imgheader.setImageResource(R.drawable.vne);
         }else if(title.equals("Dân trí")){
             menuNav.setGroupVisible(R.id.dantri,true);
             txtheader.setText("Dân trí");
+            imgheader.setImageResource(R.drawable.dantri);
         }else if(title.equals("Thanh niên")){
             menuNav.setGroupVisible(R.id.thanhnien,true);
             txtheader.setText("Thanh niên");
+            imgheader.setImageResource(R.drawable.thanhnien);
         }
         else if(title.equals("Kiến thức")){
             menuNav.setGroupVisible(R.id.vietnamnet,true);
             txtheader.setText("Kiến thức");
+            imgheader.setImageResource(R.drawable.kienthuc);
         }
         else if(title.equals("Sơn Hà")){
             menuNav.setGroupVisible(R.id.sonha,true);
             txtheader.setText("Sơn Hà");
+            imgheader.setImageResource(R.drawable.sonha);
         }
         else if(title.equals("vtc")){
             menuNav.setGroupVisible(R.id.vtc,true);
             txtheader.setText("VTC");
+            imgheader.setImageResource(R.drawable.vtc);
+        }
+        else if(title.equals("tienphong")){
+            menuNav.setGroupVisible(R.id.tienphong,true);
+            txtheader.setText("Tiền Phong");
+            imgheader.setImageResource(R.drawable.tienphong);
+        }
+        else if(title.equals("vietbao")){
+            menuNav.setGroupVisible(R.id.vietbao,true);
+            txtheader.setText("Việt Báo");
+            imgheader.setImageResource(R.drawable.vietbao);
         }
 
     }
@@ -139,7 +159,7 @@ private TextView txtheader;
         args.putString("title",title);
         switch(menuItem.getItemId()) {
             case R.id.mnkhoahoc:
-                args.putString("url", "https://vnexpress.net/rss/khoa-hoc.rss");
+                args.putString("url", "https://www.tienphong.vn/rss/ho-chi-minh-288.rss");
                 break;
             case R.id.mngiaitri:
                 args.putString("url", "https://vnexpress.net/rss/giai-tri.rss");
@@ -341,6 +361,114 @@ private TextView txtheader;
             case R.id.vtgioitre:
                 args.putString("url", "http://vtc.vn/gioi-tre.rss");
                 break;
+            case R.id.tptintuc:
+                args.putString("url", "https://www.tienphong.vn/rss/xa-hoi-tin-tuc-104.rss");
+                break;
+            case R.id.tptrada:
+                args.putString("url", "https://www.tienphong.vn/rss/xa-hoi-tra-nong-tra-da-114.rss");
+                break;
+            case R.id.tpchuyenhomnay:
+                args.putString("url", "https://www.tienphong.vn/rss/xa-hoi-chuyen-hom-nay-18.rss");
+                break;
+            case R.id.tpphongsu:
+                args.putString("url", "https://www.tienphong.vn/rss/xa-hoi-phong-su-13.rss");
+                break;
+                case R.id.tpthitruong:
+                args.putString("url", "https://www.tienphong.vn/rss/kinh-te-thi-truong-24.rss");
+                break;
+                case R.id.tpdoanhnghiep:
+                args.putString("url", "https://www.tienphong.vn/rss/kinh-te-doanh-nghiep-22.rss");
+                break;
+                case R.id.tpdoanhnhan:
+                args.putString("url", "https://www.tienphong.vn/rss/kinh-te-doanh-nhan-165.rss");
+                break;
+            case R.id.tpchungkhoan:
+                args.putString("url", "https://www.tienphong.vn/rss/kinh-te-chung-khoan-105.rss");
+                break;
+            case R.id.tpdulich:
+                args.putString("url", "https://www.tienphong.vn/rss/du-lich-220.rss");
+                break;
+            case R.id.tpnhipsong:
+                args.putString("url", "https://www.tienphong.vn/rss/gioi-tre-nhip-song-27.rss");
+                break;
+            case R.id.tpvieclam:
+                args.putString("url", "https://www.tienphong.vn/rss/gioi-tre-viec-lam-102.rss");
+                break;
+            case R.id.tptainangtre:
+                args.putString("url", "https://www.tienphong.vn/rss/tai-nang-tre-295.rss");
+                break; case R.id.tpsao:
+                args.putString("url", "https://www.tienphong.vn/rss/giai-tri-sao-35.rss");
+                break;
+            case R.id.tpcongnghe:
+                args.putString("url", "https://www.tienphong.vn/rss/cong-nghe-khoa-hoc-46.rss");
+                break; case R.id.tpthoitrang:
+                args.putString("url", "https://www.tienphong.vn/rss/thoi-trang-266.rss");
+                break;
+            case R.id.tphocduong:
+                args.putString("url", "https://www.tienphong.vn/rss/hoc-duong-ky-tuc-xa-194.rss");
+                break;
+                case R.id.vbanninh:
+                args.putString("url", "http://vietbao.vn/live/An-ninh-Phap-luat/rss.xml");
+                break;
+            case R.id.vbblog:
+                args.putString("url", "http://vietbao.vn/live/Blog/rss.xml");
+                break;
+            case R.id.vbbongda:
+                args.putString("url", "http://vietbao.vn/live/Bong-da/rss.xml");
+                break;
+            case R.id.vbchiemtinh:
+                args.putString("url", "http://vietbao.vn/live/Chiem-tinh/rss.xml");
+                break;
+            case R.id.vbcongnghe:
+                args.putString("url", "http://vietbao.vn/live/Cong-nghe/rss.xml");
+                break;
+            case R.id.vbdulich:
+                args.putString("url", "http://vietbao.vn/live/Du-lich/rss.xml");
+                break;
+            case R.id.vbdoisong:
+                args.putString("url", "http://vietbao.vn/live/Doi-song-Gia-dinh/rss.xml");
+                break;
+
+            case R.id.vbgame:
+                args.putString("url", "http://vietbao.vn/live/Game/rss.xml");
+                break;
+            case R.id.vbgiaoduc:
+                args.putString("url", "http://vietbao.vn/live/Giao-duc/rss.xml");
+                break;
+            case R.id.vbkhampha:
+                args.putString("url", "http://vietbao.vn/live/Kham-pha-Viet-Nam/rss.xml");
+                break;
+            case R.id.vbkhoahoc:
+                args.putString("url", "http://vietbao.vn/live/Khoa-hoc/rss.xml");
+                break;
+            case R.id.vbkinhte:
+                args.putString("url", "http://vietbao.vn/live/Kinh-te/rss.xml");
+                break;
+            case R.id.vbmedia:
+                args.putString("url", "http://vietbao.vn/live/Media/rss.xml");
+                break;
+            case R.id.vbbonphuong:
+                args.putString("url", "http://vietbao.vn/live/Nguoi-Viet-bon-phuong/rss.xml");
+                break;
+            case R.id.vbnhadat:
+                args.putString("url", "http://vietbao.vn/live/Nha-dat/rss.xml");
+                break;
+            case R.id.vboto:
+                args.putString("url", "http://vietbao.vn/live/O-to-xe-may/rss.xml");
+                break;
+            case R.id.vbphongsu:
+                args.putString("url", "http://vietbao.vn/live/Phong-su/rss.xml");
+                break;
+            case R.id.vbsuckhoe:
+                args.putString("url", "http://vietbao.vn/live/Suc-khoe/rss.xml");
+                break;
+
+
+
+
+
+
+
             default:
 
                 fragmentClass = HomeFragment.class;
