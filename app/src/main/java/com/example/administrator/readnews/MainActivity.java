@@ -6,29 +6,36 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.administrator.readnews.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    Button btnloaibao,btnuuthich;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnloaibao=findViewById(R.id.btnloaibao);
+        btnuuthich=findViewById(R.id.btnuuthich);
 
-
-                // Thông báo sẽ tự động bị hủy khi người dùng click vào Panel
 
 
 
         addControl();
-        AddStatus();
+
 
 
     }
@@ -43,18 +50,22 @@ public class MainActivity extends AppCompatActivity {
         Animation animalpha= AnimationUtils.loadAnimation(this,R.anim.anim_logo);
         imageView.startAnimation(animalpha);
         setTitle("Đọc báo");
+        btnloaibao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NameNews.class);
+                startActivity(intent);
 
+            }
+        });
        
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-
-
-                        Intent intent = new Intent(MainActivity.this, NameNews.class);
-                        startActivity(intent);
-
-                    }
-                }, 3000);
+        btnuuthich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Intent  mServiceIntent = new Intent(MainActivity.this, RSSPullService.class);
 //        mServiceIntent.setData(Uri.parse("https://vnexpress.net/tin-tuc/thoi-su/de-xuat-mo-hinh-bi-thu-kiem-chu-tich-dac-khu-kinh-te-3740710.html"));
@@ -63,18 +74,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private  void AddStatus()
-    { Window window = this.getWindow();
-        // clear FLAG_TRANSLUCENT_STATUS flag:
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-// finally change the color
-        window.setStatusBarColor(getResources().getColor(R.color.colorAccent));
-//       getSupportActionBar().hide();
-    }
 
 }

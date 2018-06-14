@@ -18,7 +18,7 @@ public class MyDatabaseAdapter extends SQLiteOpenHelper {
     private SQLiteDatabase myDataBase;
     private final Context myContext;
     private static final String DATABASE_NAME = "news.db";
-    public  String DATABASE_PATH = "/data/data/com.read.administrator.readnews/";
+    public  String DATABASE_PATH = "/data/data/com.read.news.readnews/";
     public static final int DATABASE_VERSION = 1;
     //public static final int DATABASE_VERSION_old = 1;
 

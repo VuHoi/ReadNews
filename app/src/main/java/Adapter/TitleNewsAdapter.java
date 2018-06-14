@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.administrator.readnews.R;
 
 import java.util.List;
+import java.util.Random;
 
 import model.NewsChoose;
 
@@ -57,10 +58,9 @@ public class TitleNewsAdapter extends ArrayAdapter<NewsChoose> {
 
         title.setText(newsChoose.get_title().toString());
 
-        byte[] decodedString = Base64.decode(newsChoose.get_image(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-        imglogo.setImageBitmap(decodedByte);
+       int []image={R.drawable.giaitri,R.drawable.giaoduc,R.drawable.khoahoc,R.drawable.phapluat,R.drawable.moto,R.drawable.thethao};
+        Random random=new Random();
+        imglogo.setImageResource(image[random.nextInt(6)]);
 
 
         chkstar.setChecked(newsChoose.get_star()==1);
@@ -68,8 +68,8 @@ public class TitleNewsAdapter extends ArrayAdapter<NewsChoose> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ContentValues values=new ContentValues();
-                values.put("CheckChoose",isChecked?1:2);
-                database.updateWithOnConflict("Categories", values, "Name=?",new String[]{newsChoose.get_title()}, SQLiteDatabase.CONFLICT_FAIL);
+                values.put("status",isChecked?1:2);
+                database.updateWithOnConflict("notification", values, "name=?",new String[]{newsChoose.get_title()}, SQLiteDatabase.CONFLICT_FAIL);
             }
         });
         rltcontainer.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +82,8 @@ public class TitleNewsAdapter extends ArrayAdapter<NewsChoose> {
                 v.startAnimation(animation1);
 
                 ContentValues values=new ContentValues();
-                values.put("CheckChoose",chkstar.isChecked()?1:2);
-                database.updateWithOnConflict("Categories", values, "Name=?",new String[]{newsChoose.get_title()}, SQLiteDatabase.CONFLICT_FAIL);
+                values.put("status",chkstar.isChecked()?1:2);
+                database.updateWithOnConflict("notification", values, "Name=?",new String[]{newsChoose.get_title()}, SQLiteDatabase.CONFLICT_FAIL);
             }
         });
 

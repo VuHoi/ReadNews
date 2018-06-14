@@ -12,24 +12,31 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.administrator.readnews.MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.administrator.readnews.News_Activity" />
-        <activity android:name="com.example.administrator.readnews.ChooseCategoryActivity" />
+        <activity android:name=".News_Activity" />
+        <activity android:name=".ChooseCategoryActivity" />
         <activity
-            android:name="com.example.administrator.readnews.Notification"
+            android:name=".Notification"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity="" />
-        <activity android:name="com.example.administrator.readnews.NameNews"></activity>
+            android:taskAffinity=""
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".NameNews" />
+
         <service
-            android:name="com.example.administrator.readnews.RSSPullService"
-            android:exported="false"/>
+            android:name=".RSSPullService"
+            android:exported="false" />
+
+        <activity android:name="com.read.administrator.readnews.Favorite" />
+        <activity android:name=".FavoriteActivity"></activity>
     </application>
 
 </manifest>

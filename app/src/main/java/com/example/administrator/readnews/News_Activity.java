@@ -1,5 +1,8 @@
 package com.example.administrator.readnews;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -10,13 +13,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.readnews.R;
 
@@ -123,12 +129,46 @@ private TextView txtheader;
 //    }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_choose, menu);
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return true;
+            }
+        };
+
+        searchView.setOnQueryTextListener(queryTextListener);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         // The action bar home/up action should open or close the drawer.
         switch (item.getItemId()) {
+            case R.id.mndone:
+                Intent intent =new Intent(News_Activity.this,ChooseCategoryActivity.class);
+                startActivity(intent);
+                break;
             case android.R.id.home:
                 mDrawer.openDrawer(GravityCompat.START);
                 return true;
@@ -159,7 +199,7 @@ private TextView txtheader;
         args.putString("title",title);
         switch(menuItem.getItemId()) {
             case R.id.mnkhoahoc:
-                args.putString("url", "https://www.tienphong.vn/rss/ho-chi-minh-288.rss");
+                args.putString("url", "https://vnexpress.net/rss/khoa-hoc.rss");
                 break;
             case R.id.mngiaitri:
                 args.putString("url", "https://vnexpress.net/rss/giai-tri.rss");

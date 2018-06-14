@@ -8,9 +8,9 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
     <item
-        android:id="@+id/mndone"
+        android:id="@+id/mndone1"
 
-        android:title="Cài đặt"
+        android:title="Xong"
         app:showAsAction="ifRoom" />
 
 </menu>

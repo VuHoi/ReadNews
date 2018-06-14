@@ -1,7 +1,7 @@
 package model;
 
 public class News {
-    String title, description;
+    String title="", description;
     String image;
     String link;
     boolean status;

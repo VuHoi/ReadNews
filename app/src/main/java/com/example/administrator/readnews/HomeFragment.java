@@ -37,6 +37,7 @@ ListView lsvallnews;
     ArrayList<String> urls;
     View footer_view;
      boolean isloading=false;
+    String title;
     public HomeFragment(){}
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -53,7 +54,7 @@ ListView lsvallnews;
         myDatabase= new MyDatabaseAdapter(getActivity());
         myDatabase.Khoitai();
         database=myDatabase.getMyDatabase();
-        String title=getArguments().getString("title");
+         title=getArguments().getString("title");
         LayoutInflater layoutInflater= (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         footer_view= layoutInflater.inflate(R.layout.footer_view,null);
         if(title.equals("vnExpress")) {
@@ -165,6 +166,124 @@ ListView lsvallnews;
             urls.add("http://vietbao.vn/live/Doi-song-Gia-dinh/rss.xml");
             urls.add("http://vietbao.vn/live/Game/rss.xml");
 
+        }else if(title.equals("favorite"))
+        {
+            Cursor cursor = database.rawQuery("select * from notification", null);
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast())
+            {
+                String name=cursor.getString(1);
+                int restype=cursor.getInt(2);
+                if(restype==1) {
+
+
+                    if (name.equals("Khoa học")) {
+
+                        urls.add("https://www.tienphong.vn/rss/ho-chi-minh-288.rss");
+                        urls.add("https://vnexpress.net/rss/khoa-hoc.rss");
+                        urls.add("http://vietbao.vn/live/Khoa-hoc/rss.xml");
+                    } else if (name.equals("Giải trí")) {
+                        urls.add("https://vnexpress.net/rss/giai-tri.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe/giai-tri.rss");
+                        urls.add("https://kienthuc.net.vn/rss/quan-su-26.rss");
+                        urls.add("http://vtc.vn/giai-tri.rss");
+                    }
+                    else if (name.equals("Giáo dục")) {
+                        urls.add("https://vnexpress.net/rss/giao-duc.rss");
+                        urls.add("https://kienthuc.net.vn/rss/video-214.rss");
+                        urls.add("http://vietbao.vn/live/Giao-duc/rss.xml");
+                    }
+                    else if (name.equals("Thời sự")) {
+                        urls.add("https://vnexpress.net/rss/thoi-su.rss");
+                        urls.add("http://soha.vn/thoi-su.rss");
+                        urls.add("https://thanhnien.vn/rss/viet-nam.rss");
+                        urls.add("https://kienthuc.net.vn/rss/kinh-doanh-9.rss");
+                    }
+                    else if (name.equals("Pháp luật")) {
+                        urls.add("https://vnexpress.net/rss/phap-luat.rss");
+                        urls.add("http://soha.vn/phap-luat.rss");
+                        urls.add("https://thanhnien.vn/rss/viet-nam/phap-luat.rss");
+                        urls.add("http://vtc.vn/phap-luat.rss");
+                    }
+                    else if (name.equals("Sức khỏe")) {
+                        urls.add("http://vietbao.vn/live/Suc-khoe/rss.xml");
+                        urls.add("https://vnexpress.net/rss/suc-khoe.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe.rss");
+                        urls.add("");
+                    }
+                    else if (name.equals("Gia đình")) {
+                        urls.add("https://vnexpress.net/rss/gia-dinh.rss");
+
+                    }
+                    else if (name.equals("Kinh doanh")) {
+                        urls.add("http://soha.vn/kinh-doanh.rss");
+                        urls.add("https://kienthuc.net.vn/rss/cong-dong-tre-27.rss");
+                        urls.add("");
+                        urls.add("");
+                    }
+                    else if (name.equals("Quân sự")) {
+                        urls.add("http://soha.vn/quan-su.rss");
+                    }
+                    else if (name.equals("Cư dân mạng")) {
+                        urls.add("http://soha.vn/cu-dan-mang.rss");
+
+                    }
+                    else if (name.equals("Khám phá")) {
+                        urls.add("http://soha.vn/kham-pha.rss");
+                        urls.add("https://kienthuc.net.vn/rss/kham-pha-13.rss");
+                        urls.add("http://vietbao.vn/live/Kham-pha-Viet-Nam/rss.xml");
+                        urls.add("https://www.tienphong.vn/rss/hoc-duong-ky-tuc-xa-194.rss");
+                    }
+                    else if (name.equals("Làm đẹp")) {
+                        urls.add("http://dantri.com.vn/suc-khoe/lam-dep.rss");
+                        urls.add("https://thanhnien.vn/rss/thoi-su/viec-lam.rss");
+                        urls.add("https://www.tienphong.vn/rss/gioi-tre-nhip-song-27.rss");
+                        urls.add("https://www.tienphong.vn/rss/thoi-trang-266.rss");
+                    }
+                    else if (name.equals("Kiến thức giới tính")) {
+                        urls.add("http://dantri.com.vn/suc-khoe/kien-thuc-gioi-tinh.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe/tu-van.rss");
+                        urls.add("http://vtc.vn/xa-hoi.rss");
+                        urls.add("http://vtc.vn/gioi-tre.rss");
+                    }
+                    else if (name.equals("Xã hội")) {
+                        urls.add("http://dantri.com.vn/suc-khoe/xa-hoi.rss");
+                        urls.add("http://vtc.vn/xa-hoi.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe/xa-hoi.rss");
+                        urls.add("http://vtc.vn/xa-hoi.rss");
+                    }
+                    else if (name.equals("Môi trường")) {
+                        urls.add("http://dantri.com.vn/suc-khoe/moi-truong.rss");
+                        urls.add("https://thanhnien.vn/rss/thoi-su/quoc-phong.rss");
+                        urls.add("https://thanhnien.vn/rss/viec-lam/can-biet.rss");
+                        urls.add("https://kienthuc.net.vn/rss/lan-banh-217.rss");
+                    }
+                    else if (name.equals("Giao thông")) {
+                        urls.add("http://dantri.com.vn/suc-khoe/giao-thong.rss");
+                        urls.add("https://thanhnien.vn/rss/phap-luat/trong-an.rss");
+
+                    }
+                    else if (name.equals("Thời trang")) {
+                        urls.add("https://www.tienphong.vn/rss/thoi-trang-266.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe/thoi-trang.rss");
+                        urls.add("https://www.tienphong.vn/rss/thoi-trang-266.rss");
+                        urls.add("http://dantri.com.vn/suc-khoe/thoi-trang.rss");
+                    }
+                    else if (name.equals("Tuyển dụng")) {
+                        urls.add("https://thanhnien.vn/rss/viec-lam/tuyen-dung.rss");
+
+                    }
+
+
+
+
+                }
+
+                cursor.moveToNext();
+            }
+
+            cursor.close();
         }
 
 //        url.add("https://vnexpress.net/rss/khoa-hoc.rss");
@@ -197,7 +316,8 @@ urls.remove(0);
                 Bundle bundle =new Bundle();
                 bundle.putString("content",AllContents.get(position).getLink());
                 fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.flContent, fragment).commit();
+
+                fragmentTransaction.replace(title.equals("favorite")?R.id.flContent1:R.id.flContent, fragment).commit();
 
             }
         });

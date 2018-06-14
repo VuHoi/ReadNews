@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context="com.example.administrator.readnews.MainActivity">
 
 
@@ -17,6 +18,31 @@
         android:layout_marginBottom="100dp"
         android:layout_centerHorizontal="true"
         app:civ_border_color="@color/colorPrimary"/>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+         android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:padding="10dp"
+            android:id="@+id/btnloaibao"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstyle"
+            android:text="Loại báo"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:padding="10dp"
+            android:id="@+id/btnuuthich"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstyle"
+            android:text="Ưu thích"/>
+    </LinearLayout>
 
 </RelativeLayout>

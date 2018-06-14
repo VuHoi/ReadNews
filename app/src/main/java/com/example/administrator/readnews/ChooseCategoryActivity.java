@@ -1,6 +1,9 @@
 package com.example.administrator.readnews;
 
 import android.annotation.SuppressLint;
+import android.app.SearchManager;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +17,8 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.administrator.readnews.R;
 
@@ -49,14 +54,14 @@ public class ChooseCategoryActivity extends AppCompatActivity {
         myDatabase.Khoitai();
         database=myDatabase.getMyDatabase();
 
-        Cursor cursor = database.rawQuery("select * from Categories", null);
+        Cursor cursor = database.rawQuery("select * from notification", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast())
         {
             String name=cursor.getString(1);
-            int restype=cursor.getInt(3);
-            byte[] image = cursor.getBlob(2);
-            NewsChooses.add(new NewsChoose(name,image,restype));
+            int restype=cursor.getInt(2);
+
+            NewsChooses.add(new NewsChoose(name,restype));
 
             adapter.notifyDataSetChanged();
             cursor.moveToNext();
@@ -71,17 +76,22 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
 
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
     @SuppressLint("ResourceAsColor")
     private void addControl() {
         lsvtitle=findViewById(R.id.lsvtitle);
          toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-      setTitle("Chọn tên báo bạn quan tâm");
+      setTitle("Chọn mục báo bạn quan tâm");
       toolbar.setTitleTextColor(R.color.white);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //Hiện nút back
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         NewsChooses=new ArrayList<>();
         adapter=new TitleNewsAdapter(ChooseCategoryActivity.this,R.layout.item_choose_news,NewsChooses);
         lsvtitle.setAdapter(adapter);
@@ -90,7 +100,39 @@ public class ChooseCategoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_choose, menu);
+        getMenuInflater().inflate(R.menu.choose, menu);
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                try {
+                    ContentValues values = new ContentValues();
+                    values.put("name", query);
+                    values.put("status", 1);
+                    database.insertWithOnConflict("notification", null, values, SQLiteDatabase.CONFLICT_FAIL);
+                    NewsChooses.add(new NewsChoose(query,1));
+                    adapter.notifyDataSetChanged();
+                }catch (Exception e){
+                    Toast.makeText(ChooseCategoryActivity.this, "Mục quan tâm đã tồn tại", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        };
+
+        searchView.setOnQueryTextListener(queryTextListener);
+
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -99,13 +141,10 @@ public class ChooseCategoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.mndone:
+            case R.id.mndone1:
 
-//                ContentValues values=new ContentValues();
-//                values.put("checkChoice",2);
-//                database.updateWithOnConflict("StatusChoose",values,"Id=1",null,SQLiteDatabase.CONFLICT_FAIL);
-                Intent intent =new Intent(ChooseCategoryActivity.this,News_Activity.class);
-                startActivity(intent);
+
+               onBackPressed();
                 break;
 
         }
