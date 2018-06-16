@@ -26,12 +26,19 @@ import model.News;
 import model.NewsChoose;
 
 public class RSSPullService extends Service {
-
     MyDatabaseAdapter myDatabase;
     SQLiteDatabase database;
 
 ArrayList <String> urls;
     News news;
+
+    public RSSPullService(Context applicationContext) {
+        super();
+
+    }
+
+    public RSSPullService() {
+    }
     public void createNotification(String url,String BigTitle,String content,int index) {
 
         NotificationCompat.Builder mBuilder =
@@ -40,7 +47,7 @@ ArrayList <String> urls;
         ii.putExtra("url",url);
         Intent backIntent = new Intent(this, NameNews.class);
         backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ii.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ii.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,  new Intent[] {backIntent, ii}, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
@@ -66,6 +73,7 @@ ArrayList <String> urls;
                     NotificationManager.IMPORTANCE_DEFAULT);
             mNotificationManager.createNotificationChannel(channel);
         }
+
 
         mNotificationManager.notify(index, mBuilder.build());
 
@@ -217,11 +225,12 @@ ArrayList <String> urls;
         super.onCreate();
     }
 
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 //        final String  url = intent.getDataString();
 
-for (int i=0;i<100;i++) {
+for (int i=1;i<100;i++) {
     final int index = i%urls.size();
     try {
         final int finalI = i;
@@ -229,7 +238,11 @@ for (int i=0;i<100;i++) {
                 new Runnable() {
                     public void run() {
                         readDataDanTri(urls.get(index));
-                     if(!news.getTitle().isEmpty())   createNotification(news.getLink(), news.getTitle(), news.getDescription(), finalI);
+
+                     if(!news.getTitle().isEmpty()) {
+
+                         createNotification(news.getLink(), news.getTitle(), news.getDescription(), finalI);
+                     }
 
                     }
                 }, 1000*15*60 * finalI);

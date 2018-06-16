@@ -18,6 +18,22 @@ public class Notification extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String url =getIntent().getStringExtra("url");
+        wvContent =findViewById(R.id.wvcontent);
+        wvContent.loadUrl(url);
+        wvContent.setWebViewClient(new WebViewClient());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
         String url =getIntent().getStringExtra("url");
         wvContent =findViewById(R.id.wvcontent);
         wvContent.loadUrl(url);

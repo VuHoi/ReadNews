@@ -26,16 +26,26 @@
         <activity
             android:name=".Notification"
             android:excludeFromRecents="true"
-            android:launchMode="singleTask"
+
             android:taskAffinity=""
+            android:clearTaskOnLaunch="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".NameNews" />
 
         <service
             android:name=".RSSPullService"
-            android:exported="false" />
+            android:exported="false"
+            android:enabled="true"/>
 
-        <activity android:name="com.read.administrator.readnews.Favorite" />
+        <receiver
+            android:name=".RSSPullService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name=".RSSPullService"/>
+            </intent-filter>
+        </receiver>
         <activity android:name=".FavoriteActivity"></activity>
     </application>
 

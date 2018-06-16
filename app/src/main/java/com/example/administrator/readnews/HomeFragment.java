@@ -289,20 +289,8 @@ ListView lsvallnews;
 //        url.add("https://vnexpress.net/rss/khoa-hoc.rss");
 
 
-        readData(urls.get(0));
-           new android.os.Handler().postDelayed(
-                   new Runnable() {
-                       public void run() {
-                           try {
 
-                               Collections.shuffle(content);
-                               AllContents.addAll(content);
-                               adapter.notifyDataSetChanged();
 
-                           }catch (Exception e ){}
-                       }
-                   }, 1000);
-urls.remove(0);
 
 
         final Fragment fragment =new ContentNewFragment();
@@ -355,7 +343,24 @@ urls.remove(0);
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        readData(urls.get(0));
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        try {
 
+                            Collections.shuffle(content);
+                            AllContents.addAll(content);
+                            adapter.notifyDataSetChanged();
+
+                        }catch (Exception e ){}
+                    }
+                }, 1000);
+        urls.remove(0);
+    }
 
     private void readData(final String url) {
         try {

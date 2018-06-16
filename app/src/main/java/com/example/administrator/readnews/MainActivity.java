@@ -1,5 +1,7 @@
 package com.example.administrator.readnews;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,13 +22,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button btnloaibao,btnuuthich;
+    Intent mServiceIntent;
+    private RSSPullService mSensorService;
+    Context ctx;
+    public Context getCtx() {
+        return ctx;
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
+        ctx = this;
         setContentView(R.layout.activity_main);
         btnloaibao=findViewById(R.id.btnloaibao);
         btnuuthich=findViewById(R.id.btnuuthich);
@@ -67,13 +77,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent  mServiceIntent = new Intent(MainActivity.this, RSSPullService.class);
-//        mServiceIntent.setData(Uri.parse("https://vnexpress.net/tin-tuc/thoi-su/de-xuat-mo-hinh-bi-thu-kiem-chu-tich-dac-khu-kinh-te-3740710.html"));
-        startService(mServiceIntent);
+        mSensorService = new RSSPullService(getCtx());
+        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
+
+        if (!isMyServiceRunning(mSensorService.getClass())) {
+            startService(mServiceIntent);
+        }
 
     }
 
 
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+//    @Override
+//    protected void onDestroy() {
+//        stopService(mServiceIntent);
+//
+//        super.onDestroy();
+//
+//    }
 
 }

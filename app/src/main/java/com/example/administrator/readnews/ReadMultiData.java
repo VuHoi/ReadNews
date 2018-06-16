@@ -63,6 +63,7 @@ public class ReadMultiData extends AsyncTask<Object, Integer,String> {
 
         }
         Element element = (Element) nodeList.item(i);
+
         try{ news.setTitle(parser.getValue(element,"title"));}catch(Exception e){}
         try{ news.setTitle(element.getElementsByTagName("title").item(0).getTextContent());}catch (Exception e){}
         try{news.setLink(parser.getValue(element,"link"));}catch (Exception e){}
@@ -71,7 +72,7 @@ public class ReadMultiData extends AsyncTask<Object, Integer,String> {
             news.setDescription((cData.split("/></a>"))[1]);
         }catch (Exception e){}
         try{            news.setDescription( (cData.split("</a></br>"))[1]);}catch (Exception e){}
-        listNews.add(news);
+       listNews.add(news);
 //        if (newsAdapter != null) newsAdapter.notifyDataSetChanged();
 
     }

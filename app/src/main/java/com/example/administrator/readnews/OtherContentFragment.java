@@ -28,9 +28,9 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_other_content, container, false);
-        Bundle bundle=getArguments();
-        String Url= bundle.getString("url");
-        title=bundle.getString("title");
+
+
+
 
         news=new ArrayList<>();
 
@@ -53,41 +53,20 @@ public class OtherContentFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        if(title.equals("vnExpress")) {
-            readDataDanTri(Url);
-        }
-        else if(title.equals("Sơn Hà")){
-            readDataDanTri(Url);
-        }
-        else if(title.equals("Dân trí")){
-            readDataDanTri(Url);
-        }
-        else if(title.equals("Kiến thức")){
-            readDataDanTri(Url);
-        }
-        else if(title.equals("vtc")){
-            readDataDanTri(Url);
-        }
-        else if(title.equals("Thanh niên")){
-            readDataDanTri(Url);
-        }
+
 
         return view;
     }
 
-    private void readData(final String url) {
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Object dataTransfer[] = new Object[3];
-                dataTransfer[0]=url;
-                dataTransfer[1]=adapter;
-                dataTransfer[2]=news;
-                new ReadData().execute(dataTransfer);
-            }
-        });
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle bundle=getArguments();
+        String Url= bundle.getString("url");
+        readDataDanTri(Url);
     }
+
     private void readDataDanTri(final String url) {
 
         getActivity().runOnUiThread(new Runnable() {
