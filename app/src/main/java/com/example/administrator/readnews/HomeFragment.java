@@ -332,13 +332,17 @@ ListView lsvallnews;
                                   } catch (Exception e) {
                                   }
                               }
-                          }, 100);
+                          }, 1000);
                   urls.remove(0);
               }catch (Exception e){}
 
              }
             }
         });
+
+
+
+
         return view;
     }
 
@@ -356,7 +360,9 @@ ListView lsvallnews;
                             AllContents.addAll(content);
                             adapter.notifyDataSetChanged();
 
-                        }catch (Exception e ){}
+                        }catch (Exception e ){
+                            Toast.makeText(getContext(), "loi", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }, 1000);
         urls.remove(0);

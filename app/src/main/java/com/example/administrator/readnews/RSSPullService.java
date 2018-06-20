@@ -241,11 +241,11 @@ for (int i=1;i<100;i++) {
 
                      if(!news.getTitle().isEmpty()) {
 
-                         createNotification(news.getLink(), news.getTitle(), news.getDescription(), finalI);
+                         createNotification(news.getLink(), news.getTitle(), news.getDescription().substring(0,news.getDescription().length()>120?120:news.getDescription().length()-1), finalI);
                      }
 
                     }
-                }, 1000*15*60 * finalI);
+                }, 1000*10*50 * finalI);
     }catch(Exception e) {}
 }
         return super.onStartCommand(intent, flags, startId);
